@@ -1,7 +1,11 @@
-import * as fs from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 
-const entry = "Do not send that 2 a.m. email to your boss with just a few thoughts about the project.\nIt mattered because three paragraphs of tired honesty turned into a meeting you spent the next month undoing.";
+// Two Lines to Your Past Self: a warning about one specific moment, and why it mattered.
+const entry = [
+  "Past me: never deploy on Friday at 4:58 PM just because the tests are green.",
+  "That one deploy cost me the whole weekend, my sleep, and my faith in the color green.",
+].join("\n");
 
-fs.mkdirSync("/output", { recursive: true });
-fs.writeFileSync("/output/entry.txt", entry, "utf8");
-console.log("wrote /output/entry.txt (" + entry.length + " chars)");
+mkdirSync("/output", { recursive: true });
+writeFileSync("/output/entry.txt", entry + "\n");
+console.log(entry);
